@@ -13,11 +13,10 @@ import { userRole } from 'src/shared/types/userRole.type';
 //pass name to the @Entity() decorator to specify db table name --------------------------
 @Entity('user')
 export class UserEntity {
-	@PrimaryGeneratedColumn('uuid') id: string;
+	@PrimaryGeneratedColumn() id: string;
 	@CreateDateColumn() created: Date;
 	@UpdateDateColumn() updated: Date;
 	@Column('text') role: userRole;
-	@Column('text') subrole: string;
 	@Column('text') firstName: string;
 	@Column('text') secondName: string;
 	@Column('text') lastName: string;

@@ -8,12 +8,14 @@ import { APP_FILTER, APP_INTERCEPTOR } from '@nestjs/core';
 import { HttpErrorFilter } from './shared/http.error.filter';
 import { LoggerInterseptor } from './shared/logging.interseptor';
 import { AuthModule } from './auth/auth.module';
+import { QuoteModule } from './quote/quote.module';
 
 @Module({
 	imports: [
 		TypeOrmModule.forRoot(), // insert typeorm module to the app
 		UserModule,
 		AuthModule,
+		QuoteModule,
 	],
 	controllers: [AppController],
 	providers: [
