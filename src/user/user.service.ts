@@ -30,7 +30,7 @@ export class UserService {
 		return user.toResponseObject(true, secret);
 	}
 
-	async register(data: UserDTO): Promise<Partial<UserDTO>> {
+	async register(data: Partial<UserDTO>): Promise<Partial<UserDTO>> {
 		const { email } = data;
 		let user = await this.userRepository.findOne({ where: { email } });
 		if (user) {

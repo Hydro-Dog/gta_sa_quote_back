@@ -6,7 +6,9 @@ import {
 	Param,
 	Post,
 	Put,
+	UseGuards,
 } from '@nestjs/common';
+import { RoleGuard } from 'src/shared/guards/role.guard';
 import { QuoteDTO } from './quote.dto';
 import { QuoteService } from './quote.service';
 
@@ -20,8 +22,14 @@ export class QuoteController {
 	}
 
 	@Get()
+	@UseGuards(RoleGuard)
 	getAll() {
 		return this.quoteService.getAll();
+	}
+
+	@Get('/random')
+	getRandom() {
+		return this.quoteService.getRandom();
 	}
 
 	@Put(':id')

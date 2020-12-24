@@ -13,7 +13,7 @@ export class QuoteService {
 	) {}
 
 	async add(data: Partial<QuoteDTO>): Promise<Partial<QuoteDTO>> {
-		const { text, author, authorPic } = data;
+		const { text, author } = data;
 		let quote = await this.quoteRepository.findOne({ where: { text } });
 		if (quote) {
 			throw new HttpException('Quote already exist', HttpStatus.BAD_REQUEST);
@@ -25,8 +25,15 @@ export class QuoteService {
 	}
 
 	async getAll(): Promise<Partial<QuoteDTO[]>> {
-		const quotes = await this.quoteRepository.find();
+		const quotes = await this.quoteRepository.find({ relations: ['author'] });
+		console.log('quotes: ', quotes);
 		return quotes;
+	}
+
+	async getRandom(): Promise<QuoteDTO> {
+		const quotes = await this.quoteRepository.find({ relations: ['author'] });
+		console.log('LENGTH: ', Math.round(Math.random() * quotes.length));
+		return quotes[Math.round(Math.random() * quotes.length)];
 	}
 
 	async update(

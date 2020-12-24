@@ -9,6 +9,7 @@ import { HttpErrorFilter } from './shared/http.error.filter';
 import { LoggerInterseptor } from './shared/logging.interseptor';
 import { AuthModule } from './auth/auth.module';
 import { QuoteModule } from './quote/quote.module';
+import { QuoteAuthorModule } from './quoteAuthor/quoteAuthor.module';
 
 @Module({
 	imports: [
@@ -16,12 +17,13 @@ import { QuoteModule } from './quote/quote.module';
 		UserModule,
 		AuthModule,
 		QuoteModule,
+		// QuoteAuthorModule,
 	],
 	controllers: [AppController],
 	providers: [
 		AppService,
 		{ provide: APP_FILTER, useClass: HttpErrorFilter },
-		{ provide: APP_INTERCEPTOR, useClass: LoggerInterseptor },
+		// { provide: APP_INTERCEPTOR, useClass: LoggerInterseptor },
 	],
 })
 export class AppModule {}

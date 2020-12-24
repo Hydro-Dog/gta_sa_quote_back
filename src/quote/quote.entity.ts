@@ -1,7 +1,9 @@
+import { QuoteAuthorEntity } from 'src/quoteAuthor/quoteAuthor.entity';
 import {
 	Column,
 	CreateDateColumn,
 	Entity,
+	ManyToOne,
 	PrimaryGeneratedColumn,
 	UpdateDateColumn,
 } from 'typeorm';
@@ -12,6 +14,9 @@ export class QuoteEntity {
 	@CreateDateColumn() created: Date;
 	@UpdateDateColumn() updated: Date;
 	@Column('text') text: string;
-	@Column('text') author: string;
-	@Column('text') authorPic: string;
+	@ManyToOne(
+		() => QuoteAuthorEntity,
+		author => author.quotes,
+	)
+	author: QuoteAuthorEntity;
 }

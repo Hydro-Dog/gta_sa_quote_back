@@ -26,12 +26,7 @@ export class AuthGuard implements CanActivate {
 	}
 
 	async validateRequest(authorization: string) {
-		const bearer = authorization.split(' ')[0];
-		const authToken = authorization.split(' ')[1];
-
-		if (bearer !== 'Bearer') {
-			throw new HttpException('Invalid token', HttpStatus.FORBIDDEN);
-		}
+		const authToken = authorization;
 
 		const id = jwt.decode(authToken)['id'];
 		const user = await this.userService.get(id);

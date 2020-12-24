@@ -16,6 +16,7 @@ import { UserService } from './user.service';
 
 // pass route name to the @Controller decorator -----------------------------------------------
 @Controller('api/user')
+// @UseGuards(AuthGuard)
 export class UserController {
 	constructor(private userService: UserService) {}
 
@@ -27,7 +28,7 @@ export class UserController {
 
 	@Post('register')
 	@UsePipes(new ValidationPipe())
-	register(@Body() data: UserDTO) {
+	register(@Body() data: Partial<UserDTO>) {
 		return this.userService.register(data);
 	}
 

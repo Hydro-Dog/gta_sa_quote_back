@@ -16,20 +16,20 @@ export class UserEntity {
 	@PrimaryGeneratedColumn() id: string;
 	@CreateDateColumn() created: Date;
 	@UpdateDateColumn() updated: Date;
-	@Column('text') role: userRole;
-	@Column('text') firstName: string;
-	@Column('text') secondName: string;
-	@Column('text') lastName: string;
-	@Column('text') userPic: string;
-	@Column('text') phoneNumber: string;
+	@Column({ type: 'text', nullable: true }) role: userRole;
+	@Column({ type: 'text', nullable: true }) firstName: string;
+	@Column({ type: 'text', nullable: true }) secondName: string;
+	@Column({ type: 'text', nullable: true }) lastName: string;
+	@Column({ type: 'text', nullable: true }) userPic: string;
+	@Column({ type: 'text', nullable: true }) phoneNumber: string;
 	@Column({ type: 'text', unique: true }) email: string;
-	@Column('text') password: string;
-	@Column('text') secret: string;
-	@Column('text') lang: string;
-	@Column('text') companyId: string;
-	@Column('text') friendsIds: string[];
-	@Column('text') friendsRequestsIds: string[];
-	@Column('text') isActive: boolean;
+	@Column({ type: 'text' }) password: string;
+	@Column({ type: 'text', nullable: true }) secret: string;
+	@Column({ type: 'text', nullable: true }) lang: string;
+	@Column({ type: 'text', nullable: true }) companyId: string;
+	@Column({ type: 'text', nullable: true }) friendsIds: string[];
+	@Column({ type: 'text', nullable: true }) friendsRequestsIds: string[];
+	@Column({ type: 'text', nullable: true }) isActive: boolean;
 
 	@BeforeInsert()
 	async hashPassword() {
