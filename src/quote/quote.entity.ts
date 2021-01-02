@@ -1,4 +1,4 @@
-import { QuoteAuthorEntity } from 'src/quoteAuthor/quoteAuthor.entity';
+import { CharacterEntity } from 'src/character/character.entity';
 import {
 	Column,
 	CreateDateColumn,
@@ -15,8 +15,8 @@ export class QuoteEntity {
 	@UpdateDateColumn() updated: Date;
 	@Column('text') text: string;
 	@ManyToOne(
-		() => QuoteAuthorEntity,
+		() => CharacterEntity,
 		author => author.quotes,
 	)
-	author: QuoteAuthorEntity;
+	author: CharacterEntity;
 }

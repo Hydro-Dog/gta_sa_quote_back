@@ -5,16 +5,17 @@ import {
 	Entity,
 	OneToMany,
 	PrimaryColumn,
+	PrimaryGeneratedColumn,
 	UpdateDateColumn,
 } from 'typeorm';
 
-@Entity('quoteAuthor')
-export class QuoteAuthorEntity {
-	@PrimaryColumn() id: string;
+@Entity('character')
+export class CharacterEntity {
+	@PrimaryGeneratedColumn() id: string;
 	@CreateDateColumn() created: Date;
 	@UpdateDateColumn() updated: Date;
 	@Column('text') name: string;
-	@Column('text') userPic: string;
+	@Column('text') image: string;
 	@OneToMany(
 		() => QuoteEntity,
 		quote => quote.id,
