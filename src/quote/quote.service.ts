@@ -31,6 +31,7 @@ export class QuoteService {
 
 	async getRandom(): Promise<QuoteDTO> {
 		const quotes = await this.quoteRepository.find({ relations: ['author'] });
+		console.log('quotes: ', quotes);
 		return quotes[Math.round(Math.random() * quotes.length)];
 	}
 
