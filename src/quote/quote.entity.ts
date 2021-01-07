@@ -17,6 +17,7 @@ export class QuoteEntity {
 	@ManyToOne(
 		() => CharacterEntity,
 		author => author.quotes,
+		{ onDelete: 'CASCADE' },
 	)
 	author: CharacterEntity;
 }

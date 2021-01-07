@@ -16,12 +16,12 @@ export class CharacterController {
 
 	@Post()
 	add(@Body() data: CharacterDTO) {
-		console.log('character: ', data);
 		return this.characterService.add(data);
 	}
 
 	@Get()
 	getAll() {
+		console.log('characters get');
 		return this.characterService.getAll();
 	}
 
