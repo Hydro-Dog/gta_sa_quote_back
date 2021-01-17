@@ -13,13 +13,18 @@ export class QuoteService {
 	) {}
 
 	async add(data: Partial<QuoteDTO>): Promise<Partial<QuoteDTO>> {
+		console.log('data: ', data);
 		const { text, author } = data;
 		let quote = await this.quoteRepository.findOne({ where: { text } });
 		if (quote) {
 			throw new HttpException('Quote already exist', HttpStatus.BAD_REQUEST);
 		}
 
-		quote = await this.quoteRepository.create(data);
+		quote = await this.quoteRepository.create({
+			text: data.text,
+			author: data.authorId,
+		});
+		console.log('created quote: ', quote);
 		await this.quoteRepository.save(quote);
 		return quote;
 	}

@@ -18,6 +18,7 @@ export class QuoteController {
 
 	@Post()
 	add(@Body() data: Partial<QuoteDTO>) {
+		console.log('data: ', data);
 		return this.quoteService.add(data);
 	}
 
